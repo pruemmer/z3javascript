@@ -5,9 +5,17 @@ class Query {
 	constructor(exprs, checks) {
 		this.exprs = exprs;
 		this.checks = checks;
+		this.fs = require("fs");
 	}
 
+	store(string) {
+		this.fs.writeFileSync("./query_output3.txt", string + "\n",{flag: "a"});
+		return string;
+	}
+
+    
 	getModel(solver) {
+		this.store(solver.toString());
 		return Query.process(solver, [this]);
 	}
 }

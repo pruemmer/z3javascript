@@ -9,12 +9,19 @@ import Expr from "./Expr";
 class Context {
 
 	constructor() {
+		this.fs = require("fs");
+		this.store_increment = 1;
 		let config = Z3.Z3_mk_config();
-
+        
 		Z3.Z3_set_param_value(config, "model", "true");
 
 		this.ctx = Z3.Z3_mk_context_rc(config);
 		Z3.Z3_del_config(config);
+	}
+
+	store(thingy) {
+		this.fs.writeFileSync("./context_output3.txt", this.store_increment + ". " + thingy + "\n",{flag: "a"});
+		return thingy;
 	}
 
 	_nullExpr() {
@@ -38,7 +45,7 @@ class Context {
 
 	_buildConst(func, checks, ...args) {
 		let fnResult = func.apply(this, [this.ctx].concat(args));
-		return new Expr(this, fnResult, checks);      
+		return new Expr(this, fnResult, checks);     
 	}
 
 	_buildVar(func, ...args) {
@@ -54,10 +61,12 @@ class Context {
 	}
 
 	incRef(e) {
+		"Z3.Z3_inc_ref";
 		Z3.Z3_inc_ref(this.ctx, e.ast);
 	}
 
 	decRef(e) {
+		"Z3.Z3_dec_ref";
 		Z3.Z3_dec_ref(this.ctx, e.ast);
 	}
 

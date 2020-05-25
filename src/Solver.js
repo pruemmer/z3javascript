@@ -62,6 +62,7 @@ class Solver {
 	}
 
 	getModel() {
+		this.context.store(this.toString());
 		if (this.check()) {
 			return new Model(this.context, Z3.Z3_solver_get_model(this.context.ctx, this.slv));
 		} else {
