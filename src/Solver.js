@@ -5,6 +5,9 @@
 import Z3 from "./Z3Loader";
 import Model from "./Model";
 
+const useZ3 = false;
+
+
 class Solver {
 
 	constructor(context, incremental, options) {
@@ -32,26 +35,83 @@ class Solver {
         
 		Z3.Z3_solver_inc_ref(this.context.ctx, this.slv);
 		Z3.Z3_solver_set_params(this.context.ctx, this.slv, config);
+
+        // Move this to context
+        
+		const { spawn } = require("child_process");
+		this.ostrich = spawn("/home/henrik/UU/bachelor/ostrich/ostrich", ["+stdin", "+incremental"], {
+			stdio: [
+				"pipe",
+				0,
+				0
+			]
+		});
+        
+		this.ostrich.on("close", (code) => {
+			console.log("what happened?");
+			console.log("Error code: " + code);
+		});
 	}
 
+	writeToOstrich(string) {
+		console.log("\n\n Writing to ostrich\n @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		console.log(string);
+		if (this.ostrich.stdin.write(string + "\n") == false) {
+			console.log("ostrich.stdin overflow, nothing was written");
+		}
+
+	}
+    
 	destroy() {
 		Z3.Z3_solver_dec_ref(this.context.ctx, this.slv);
+		this.writeToOstrich("(exit)");
+		console.log("Exit");
 	}
 
 	reset() {
 		Z3.Z3_solver_reset(this.context.ctx, this.slv);
+		this.writeToOstrich("(reset)");
+		console.log("Reset");
 	}
 
 	push() {
-		Z3.Z3_solver_push(this.context.ctx, this.slv);
+		Z3.Z3_solver_push(this.context.ctx, this.slv);	
+		this.writeToOstrich("(push 1)");
+		console.log("Push");
 	}
 
 	pop() {
 		Z3.Z3_solver_pop(this.context.ctx, this.slv, 1);
+		this.writeToOstrich("(pop 1)");
+		console.log("Pop");
 	}
 
+    
+
 	check() {
-		return Z3.Z3_solver_check(this.context.ctx, this.slv) === Z3.TRUE;
+		if (useZ3) {
+			return Z3.Z3_solver_check(this.context.ctx, this.slv) === Z3.TRUE;
+		} else {
+			this.writeToOstrich("(check-sat)");
+
+			//			if (this.ostrich.stdout.readable) {
+			//			    var data = this.ostrich.stdout.read();
+			//			    if (data != null) {
+			//			        console.log(data.length + " characters have been read from ostrich.stdout");
+			//			    } else {
+			//				    console.log("stdout.read failed");
+			//			    }
+			//
+			//			    var error = this.ostrich.stderr.read();
+			//			    if (error != null) {
+			//			        console.log(error.length + " characters have been read from ostrich.stderr");
+			//			    } else {
+			//				    console.log("stderr.read failed");
+			//			    }
+			//			} else {
+			//				console.log("ostrich.stdout is broken");
+			//			}
+		}
 	}
 
 	/**
@@ -62,16 +122,22 @@ class Solver {
 	}
 
 	getModel() {
-		this.context.store(this.toString());
-		if (this.check()) {
-			return new Model(this.context, Z3.Z3_solver_get_model(this.context.ctx, this.slv));
+		if (useZ3) {
+			if (this.check()) {
+				return new Model(this.context, Z3.Z3_solver_get_model(this.context.ctx, this.slv));
+			}
 		} else {
-			return null;
+			if (this.check()) {
+				console.log("What.");
+			}
 		}
+		return null;
 	}
 
 	assert(expr) {
-		return Z3.Z3_solver_assert(this.context.ctx, this.slv, expr.ast);
+		Z3.Z3_solver_assert(this.context.ctx, this.slv, expr.ast);
+		this.writeToOstrich("(assert " + expr.toString() + ")");
+		console.log("Added assertion");
 	}
 
 	toString() {
