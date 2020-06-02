@@ -36,64 +36,44 @@ class Solver {
 		Z3.Z3_solver_inc_ref(this.context.ctx, this.slv);
 		Z3.Z3_solver_set_params(this.context.ctx, this.slv, config);
 
-        // Move this to context
+		// Move this to context
         
-		const { spawn } = require("child_process");
-		this.ostrich = spawn("/home/henrik/UU/bachelor/ostrich/ostrich", ["+stdin", "+incremental"], {
-			stdio: [
-				"pipe",
-				0,
-				0
-			]
-		});
-        
-		this.ostrich.on("close", (code) => {
-			console.log("what happened?");
-			console.log("Error code: " + code);
-		});
 	}
 
-	writeToOstrich(string) {
-		console.log("\n\n Writing to ostrich\n @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		console.log(string);
-		if (this.ostrich.stdin.write(string + "\n") == false) {
-			console.log("ostrich.stdin overflow, nothing was written");
-		}
-
-	}
     
 	destroy() {
 		Z3.Z3_solver_dec_ref(this.context.ctx, this.slv);
-		this.writeToOstrich("(exit)");
+		this.context.writeToOstrich("(exit)");
 		console.log("Exit");
 	}
 
 	reset() {
 		Z3.Z3_solver_reset(this.context.ctx, this.slv);
-		this.writeToOstrich("(reset)");
+		this.context.writeToOstrich("(reset)");
 		console.log("Reset");
 	}
 
 	push() {
 		Z3.Z3_solver_push(this.context.ctx, this.slv);	
-		this.writeToOstrich("(push 1)");
+		this.context.writeToOstrich("(push 1)");
 		console.log("Push");
 	}
 
 	pop() {
 		Z3.Z3_solver_pop(this.context.ctx, this.slv, 1);
-		this.writeToOstrich("(pop 1)");
+		this.context.writeToOstrich("(pop 1)");
 		console.log("Pop");
 	}
 
     
 
 	check() {
+		console.log(this.toString());
 		if (useZ3) {
 			return Z3.Z3_solver_check(this.context.ctx, this.slv) === Z3.TRUE;
 		} else {
-			this.writeToOstrich("(check-sat)");
-
+			this.context.writeToOstrich("(check-sat)");
+            
 			//			if (this.ostrich.stdout.readable) {
 			//			    var data = this.ostrich.stdout.read();
 			//			    if (data != null) {
@@ -136,7 +116,7 @@ class Solver {
 
 	assert(expr) {
 		Z3.Z3_solver_assert(this.context.ctx, this.slv, expr.ast);
-		this.writeToOstrich("(assert " + expr.toString() + ")");
+		this.context.writeToOstrich("(assert " + expr.toString() + ")");
 		console.log("Added assertion");
 	}
 
