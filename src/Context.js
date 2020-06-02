@@ -61,6 +61,7 @@ class Context {
 	/**
      * TODO: is not recursive on array
      */
+    
 	_buildChecks(args) {
 		return args.filter(next => next.checks).reduce((last, next) => this._appendList(last, next.checks), []);
 	}
@@ -71,7 +72,7 @@ class Context {
 
 	_buildConst(func, checks, ...args) {
 		let fnResult = func.apply(this, [this.ctx].concat(args));
-		return new Expr(this, fnResult, checks);
+		return new Expr(this, fnResult, checks);      
 	}
 
 	_buildVar(func, ...args) {
@@ -87,20 +88,15 @@ class Context {
 	}
 
 	incRef(e) {
-		"Z3.Z3_inc_ref";
 		Z3.Z3_inc_ref(this.ctx, e.ast);
 	}
 
 	decRef(e) {
-		"Z3.Z3_dec_ref";
 		Z3.Z3_dec_ref(this.ctx, e.ast);
 	}
 
 	mkApp(func, args) {
-		var res = this._build(Z3.Z3_mk_app, func, args.length, args);
-		console.log("mkApp");
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_app, func, args.length, args);
 	}
 
 	mkArray(name, baseSort) {
@@ -129,10 +125,7 @@ class Context {
 	}
 
 	mkVar(name, sort) {
-		var res = this._build(Z3.Z3_mk_const, this.mkStringSymbol(name), sort);
-		this.writeToOstrich(res.toString());
-		console.log("mkVar");
-		return res;
+		return this._build(Z3.Z3_mk_const, this.mkStringSymbol(name), sort);
 	}
 
 	mkIntVar(name) {
@@ -148,12 +141,7 @@ class Context {
 	}
 
 	mkString(val) {
-		var res = this._buildConst(Z3.Z3_mk_string, [], val);
-		var str = res.toString();
-		str = str.slice(1, str.length);
-		this.writeToOstrich(str.slice(0, str.length - 1));
-		console.log("mkString");
-		return res;
+		return this._buildConst(Z3.Z3_mk_string, [], val);
 	}
 
 	mkStringVar(name) {
@@ -169,31 +157,19 @@ class Context {
 	}
 
 	mkSeqLength(val) {
-		var res = this._build(Z3.Z3_mk_seq_length, val);
-		this.writeToOstrich(res.toString());
-		console.log("mkSeqLength");
-		return res;
+		return this._build(Z3.Z3_mk_seq_length, val);
 	}
     
 	mkSeqAt(val, off) {
-		var res = this._build(Z3.Z3_mk_seq_at, val, off);
-		this.writeToOstrich(res.toString());
-		console.log("mkSeqAt");
-		return res;
+		return this._build(Z3.Z3_mk_seq_at, val, off);
 	}
    
 	mkSeqContains(val1, val2) {
-		var res = this._build(Z3.Z3_mk_seq_contains, val1, val2);
-		this.writeToOstrich(res.toString());
-		console.log("mkSeqContains");
-		return res;
+		return this._build(Z3.Z3_mk_seq_contains, val1, val2);
 	}
     
 	mkSeqConcat(strings) {
-		var res = this._buildVarNoArgs(Z3.Z3_mk_seq_concat, strings);
-		this.writeToOstrich(res.toString());
-		console.log("mkSeqConcat");
-		return res;
+		return this._buildVarNoArgs(Z3.Z3_mk_seq_concat, strings);
 	}
     
 	mkSeqSubstr(str, offset, length) {
@@ -201,121 +177,76 @@ class Context {
 		if (!length) {
 			length = this._nullExpr();
 		}
-
-		var res = this._build(Z3.Z3_mk_seq_extract, str, offset, length);
-		this.writeToOstrich(res.toString());
-		console.log("mkSeqSubstr");
-		return res;
+        
+		return this._build(Z3.Z3_mk_seq_extract, str, offset, length);
 	}
     
 	mkSeqIndexOf(str, str2, off) {
-		var res = this._build(Z3.Z3_mk_seq_index, str, str2, off);
-		this.writeToOstrich(res.toString());
-		console.log("mkSeqIndexOf");
-		return res;
+		return this._build(Z3.Z3_mk_seq_index, str, str2, off);
 	}
 
 	mkStrToInt(str) {
-		var res = this._build(Z3.Z3_mk_str_to_int, str);
-		this.writeToOstrich(res.toString());
-		console.log("mkStrToInt");
-		return res;
+		return this._build(Z3.Z3_mk_str_to_int, str);
 	}
 
 	mkIntToStr(num) {
-		var res = this._build(Z3.Z3_mk_int_to_str, num);
-		this.writeToOstrich(res.toString());
-		console.log("mkIntToStr");
-		return res;
+		return this._build(Z3.Z3_mk_int_to_str, num);
 	}
 
 	mkSeqInRe(seq, re) {
-		var res = this._build(Z3.Z3_mk_seq_in_re, seq, re);
-		this.writeToOstrich(res.toString());
-		console.log("mkSeqInRe");
-		return res;
+		return this._build(Z3.Z3_mk_seq_in_re, seq, re);
 	}
 
 	mkReConcat(re1, re2) {
-		var res = this._buildVar(Z3.Z3_mk_re_concat, re1, re2);
-		this.writeToOstrich(res.toString());
-		console.log("mkReConcat");
-		return res;
+		return this._buildVar(Z3.Z3_mk_re_concat, re1, re2);
 	}
 
 	mkReEmpty() {
-		var res = this._build(Z3.Z3_mk_re_empty, this.mkReSort(this.mkStringSort()));
-		this.writeToOstrich(res.toString());
-		console.log("mkReEmpty");
-		return res;
+		return this._build(Z3.Z3_mk_re_empty, this.mkReSort(this.mkStringSort()));
 	}
 
 	mkReFull() {
-		var res = this._build(Z3.Z3_mk_re_full, this.mkStringSort());
-		this.writeToOstrich(res.toString());
-		console.log("mkReFull");
-		return res;
+		return this._build(Z3.Z3_mk_re_full, this.mkStringSort());
 	}
 
 	mkReOption(re) {
-		var res = this._build(Z3.Z3_mk_re_option, re);
-		this.writeToOstrich(res.toString());
-		console.log("mkReOption");
-		return res;
+		return this._build(Z3.Z3_mk_re_option, re);
 	}
 
 	mkReStar(re) {
-		var res = this._build(Z3.Z3_mk_re_star, re);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_re_star, re);
 	}
 
 	mkReUnion(re1, re2) {
-		var res = this._buildVar(Z3.Z3_mk_re_union, re1, re2);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._buildVar(Z3.Z3_mk_re_union, re1, re2);
 	}
 
 	mkReIntersect(re1, re2) {
-		var res = this._buildVar(Z3.Z3_mk_re_intersect, re1, re2);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._buildVar(Z3.Z3_mk_re_intersect, re1, re2);
 	}
 
 	mkReComplement(re) {
-		var res = this._build(Z3.Z3_mk_re_complement, re);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_re_complement, re);
 	}
 
 	mkRePlus(re) {
-		var res = this._build(Z3.Z3_mk_re_plus, re);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_re_plus, re);
 	}
 
 	mkReRange(ch1, ch2) {
-		var res = this._build(Z3.Z3_mk_re_range, ch1, ch2);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_re_range, ch1, ch2);
 	}
 
 	mkReLoop(re, lo, hi) {
-		var res = this._build(Z3.Z3_mk_re_loop, re, lo, hi);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_re_loop, re, lo, hi);
 	}
 
 	mkSeqToRe(seq) {
-		var res = this._build(Z3.Z3_mk_seq_to_re, seq);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_seq_to_re, seq);
 	}
 
 	isString(ast) {
-		var res = this.build(Z3.Z3_is_string, ast) === Z3.TRUE;
-		this.writeToOstrich(res.toString());
-		return res;
+		return this.build(Z3.Z3_is_string, ast) === Z3.TRUE;
 	}
 
 	mkBoolSort() {
@@ -348,26 +279,29 @@ class Context {
 
 	mkConst(symb, sort) {
 		var res = this._build(Z3.Z3_mk_const, symb, sort);
-		this.writeToOstrich(res.toString());
+		var symb_kind = Z3.Z3_get_symbol_kind(this.ctx, symb);
+		/* Z3_symbol_kind can take two values, 0 or 1. 
+         * 0 means it is an int
+         * 1 means it is a string
+         */
+		if (symb_kind == 1) {
+			this.writeToOstrich("(declare-fun " + res.toString() + " () String)");
+		} else {
+            console.log("\n\n~~~~~~~~~~~PANIC!!!!~~~~~~~~~~\n\n")
+        }
 		return res;
 	}
 
 	mkFunc(name, args, sort) {
-		var res = this._build(Z3.Z3_mk_func_decl, name, args.length, args, sort);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_func_decl, name, args.length, args, sort);
 	}
 
 	mkRecFunc(name, args, sort) {
-		var res = this._build(Z3.Z3_mk_rec_func_decl, name, args.length, args, sort);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_rec_func_decl, name, args.length, args, sort);
 	}
 
 	mkRecFuncDef(fn, args, body) {
-		var res = this._build(Z3.Z3_add_rec_func_decl, fn, args.length, args, body);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_add_rec_func_decl, fn, args.length, args, body);
 	}
 
 	/**
@@ -375,71 +309,49 @@ class Context {
      */
 
 	mkTrue() {
-		var res = this._build(Z3.Z3_mk_true);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_true);
 	}
 
 	mkFalse() {
-		var res = this._build(Z3.Z3_mk_false);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_false);
 	}
 
 	mkEq(left, right) {
-		var res = this._build(Z3.Z3_mk_eq, left, right);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_eq, left, right);
 	} 
 
 	//missing: distinct
 
 	mkNot(arg) {
-		var res = this._build(Z3.Z3_mk_not, arg);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_not, arg);
 	}
 
 	mkIte(ifarg, thenarg, elsearg) {
-		var res = this._build(Z3.Z3_mk_ite, ifarg, thenarg, elsearg);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_ite, ifarg, thenarg, elsearg);
 	}
 
 	mkIff(left, right) {
-		var res = this._build(Z3.Z3_mk_iff, left, right);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_iff, left, right);
 	}
 
 	mkImplies(left, right) {
-		var res = this._build(Z3.Z3_mk_implies, left, right);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_implies, left, right);
 	}
 
 	mkXOr(left, right) {
-		var res = this._build(Z3.Z3_mk_xor, left, right);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_xor, left, right);
 	}
 
 	mkAnd(left, right) {
-		var res = this._buildVar(Z3.Z3_mk_and, left, right);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._buildVar(Z3.Z3_mk_and, left, right);
 	}
 
 	mkAndList(conditions) {
-		var res = this._buildVarNoArgs(Z3.Z3_mk_and, conditions);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._buildVarNoArgs(Z3.Z3_mk_and, conditions);
 	}
 
 	mkOr(left, right) {
-		var res = this._buildVar(Z3.Z3_mk_or, left, right);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._buildVar(Z3.Z3_mk_or, left, right);
 	}
 
 	/**
@@ -455,117 +367,79 @@ class Context {
 	}
 
 	mkAdd(left, right) {
-		var res = this._buildVar(Z3.Z3_mk_add, left, right);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._buildVar(Z3.Z3_mk_add, left, right);
 	}
 
 	mkMul(left, right) {
-		var res = this._buildVar(Z3.Z3_mk_mul, left, right);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._buildVar(Z3.Z3_mk_mul, left, right);
 	}
 
 	mkSub(left, right) {
-		var res = this._buildVar(Z3.Z3_mk_sub, left, right);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._buildVar(Z3.Z3_mk_sub, left, right);
 	}
 
 	mkUnaryMinus(arg) {
-		var res = this._build(Z3.Z3_mk_unary_minus, arg);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_unary_minus, arg);
 	}
 
 	mkDiv(arg1, arg2) {
-		var res = this._build(Z3.Z3_mk_div, arg1, arg2);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_div, arg1, arg2);
 	}
 
 	mkBitwiseShiftLeft(arg1, arg2) {
-		var res = this._build(Z3.Z3_mk_bvshl, arg1, arg2);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_bvshl, arg1, arg2);
 	}
 
 	mkBitwiseShiftRight(arg1, arg2) {
-		var res = this._build(Z3.Z3_mk_bvlshr, arg1, arg2);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_bvlshr, arg1, arg2);
 	}
 
 	mkMod(arg1, arg2) {
-		var res = this._build(Z3.Z3_mk_mod, arg1, arg2);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_mod, arg1, arg2);
 	}
 
 	mkRem(arg1, arg2) {
-		var res = this._build(Z3.Z3_mk_rem, arg1, arg2);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_rem, arg1, arg2);
 	}
 
 	mkPower(arg1, arg2) {
-		var res = this._build(Z3.Z3_mk_power, arg1, arg2);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_power, arg1, arg2);
 	}
 
 	mkLt(left, right) {
-		var res = this._build(Z3.Z3_mk_lt, left, right);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_lt, left, right);
 	}
 
 	mkLe(left, right) {
-		var res = this._build(Z3.Z3_mk_le, left, right);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_le, left, right);
 	}
 
 	mkGt(left, right) {
-		var res = this._build(Z3.Z3_mk_gt, left, right);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_gt, left, right);
 	}
 
 	mkGe(left, right) {
-		var res = this._build(Z3.Z3_mk_ge, left, right);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_ge, left, right);
 	}
 
 	mkRealToInt(real) {
-		var res = this._build(Z3.Z3_mk_real2int, real);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_real2int, real);
 	}
 
 	mkIntToReal(ival) {
-		var res = this._build(Z3.Z3_mk_int2real, ival);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_int2real, ival);
 	}
 
 	mkIntToBv(ival) {
-		var res = this._build(Z3.Z3_mk_int2bv, 32, ival);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_int2bv, 32, ival);
 	}
 
 	mkBvToInt(bval) {
-		var res = this._build(Z3.Z3_mk_bv2int, bval, true);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_bv2int, bval, true);
 	}
 
 	mkIsInt(arg) {
-		var res = this._build(Z3.Z3_mk_is_int, arg);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_is_int, arg);
 	}
 
 	/**
@@ -573,39 +447,27 @@ class Context {
      */
 
 	mkNumeral(numeral, sort) {
-		var res = this._build(Z3.Z3_mk_numeral, numeral, sort);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_numeral, numeral, sort);
 	}
 
 	mkReal(num, den) {
-		var res = this._build(Z3.Z3_mk_real, num, den);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_real, num, den);
 	}
 
 	mkInt(v, sort) {
-		var res = this._build(Z3.Z3_mk_int, v, sort);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_int, v, sort);
 	}
 
 	mkUnsignedInt(v, sort) {
-		var res = this._build(Z3.Z3_mk_unsigned_int, v, sort);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_unsigned_int, v, sort);
 	}
 
 	mkInt64(v, sort) {
-		var res = this._build(Z3.Z3_mk_int64, v, sort);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_int64, v, sort);
 	}
 
 	mkUnsignedInt64(v, sort) {
-		var res = this._build(Z3.Z3_mk_unsigned_int64, v, sort);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_unsigned_int64, v, sort);
 	}
 
 	mkToString(e) {
@@ -617,27 +479,21 @@ class Context {
      */
 
 	mkArraySort(indexSort, elemSort) {
-		var res = this._build(Z3.Z3_mk_array_sort, indexSort, elemSort);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_array_sort, indexSort, elemSort);
 	}
 
 	mkSelect(array, index) {
-		var res = this._build(Z3.Z3_mk_select, array, index);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_select, array, index);
 	}
 
 	mkStore(array, index, v) {
-		var res = this._build(Z3.Z3_mk_store, array, index, v).setLength(array.getLength());
-		this.writeToOstrich(res.toStrign());
-		return res;
+		return this._build(Z3.Z3_mk_store, array, index, v)
+			.setLength(array.getLength());
 	}
 
 	mkConstArray(sort, v) {
-		var res = this._build(Z3.Z3_mk_const_array, sort, v).setLength(this.mkIntVal(v.length));
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_const_array, sort, v)
+			.setLength(this.mkIntVal(v.length));
 	}
 
 	/**
@@ -647,41 +503,29 @@ class Context {
 
 	/// https://z3prover.github.io/api/html/group__capi.html#gaa80db40fee2eb0124922726e1db97b43
 	mkBound(index, sort) {
-		var res = this._build(Z3.Z3_mk_bound, index, sort);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_bound, index, sort);
 	}
 
 	/// Weight, and patterns are optional. Bound should be an array of consts.
 	mkForAllConst(bound, body, patterns = [], weight = 0) {
-		var res = this._build(Z3.mkForAllConst, weight, bound.length, bound, patterns.length, patterns, body);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.mkForAllConst, weight, bound.length, bound, patterns.length, patterns, body);
 	}
 
 	mkForAll(decl_names, sorts, body, patterns = [], weight = 0) {
-		var res = this._build(Z3.Z3_mk_forall, weight, patterns.length, patterns, decl_names.length, [sorts], decl_names, body);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_forall, weight, patterns.length, patterns, decl_names.length, [sorts], decl_names, body);
 	}
 
 	mkExists(decl_names, sorts, body, patterns = [], weight = 0) {
-		var res = this._build(Z3.Z3_mk_exists, weight, patterns.length, patterns, decl_names.length, [sorts], decl_names, body);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_exists, weight, patterns.length, patterns, decl_names.length, [sorts], decl_names, body);
 	}
 
 	/// Weight, and patterns are optional. Bound should be an array of consts.
 	mkExistsConst(bound, body, patterns = [], weight = 0) {
-		var res = this._build(Z3.Z3_mk_exists_const, weight, bound.length, bound, patterns.length, patterns, body);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_exists_const, weight, bound.length, bound, patterns.length, patterns, body);
 	}
 
 	mkPattern(terms) {
-		var res = this._build(Z3.Z3_mk_pattern, terms.length, terms);
-		this.writeToOstrich(res.toString());
-		return res;
+		return this._build(Z3.Z3_mk_pattern, terms.length, terms);
 	}
 }
 

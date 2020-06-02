@@ -75,7 +75,10 @@ function RegexRecursive(ctx, regex, idx) {
 	let shouldAddFillerIn = true;
 
 	function nextFiller() {
-		return ctx.mkStringVar("" + lrctr + " Fill " + fill_ctr++);
+		var res = ctx.mkStringVar("" + lrctr + " Fill " + (fill_ctr+1));
+		ctx.writeToOstrich("(declare-fun |" + lrctr + " Fill " + (fill_ctr+1) + "| () String)");
+		fill_ctr += 1;
+		return res;
 	}
 
 	function moreRange() {

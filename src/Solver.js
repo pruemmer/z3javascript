@@ -73,24 +73,6 @@ class Solver {
 			return Z3.Z3_solver_check(this.context.ctx, this.slv) === Z3.TRUE;
 		} else {
 			this.context.writeToOstrich("(check-sat)");
-            
-			//			if (this.ostrich.stdout.readable) {
-			//			    var data = this.ostrich.stdout.read();
-			//			    if (data != null) {
-			//			        console.log(data.length + " characters have been read from ostrich.stdout");
-			//			    } else {
-			//				    console.log("stdout.read failed");
-			//			    }
-			//
-			//			    var error = this.ostrich.stderr.read();
-			//			    if (error != null) {
-			//			        console.log(error.length + " characters have been read from ostrich.stderr");
-			//			    } else {
-			//				    console.log("stderr.read failed");
-			//			    }
-			//			} else {
-			//				console.log("ostrich.stdout is broken");
-			//			}
 		}
 	}
 
@@ -117,7 +99,6 @@ class Solver {
 	assert(expr) {
 		Z3.Z3_solver_assert(this.context.ctx, this.slv, expr.ast);
 		this.context.writeToOstrich("(assert " + expr.toString() + ")");
-		console.log("Added assertion");
 	}
 
 	toString() {
