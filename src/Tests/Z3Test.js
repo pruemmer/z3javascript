@@ -94,9 +94,10 @@ function Test(Origin) {
 	}
 }
 
-const test_re = [/hello/, /[0-9]{3,}/, /[0-9]{undefined}/, /[0-9]{5}/];//, /(?!hi)hello/];//, /(?=hello)hello/, /(?=[12345])./, /webkit|android|google/, /(?:webkit)?google/, /^\bGiggles$/, /^(.*)\1(Hello)\2$/, /^([12345]+)\1$/, /^Hello.\bWorld$/, /^<(.+)>.+<\1>$/, /(Capture)\1/, /^\bGiggles\b$/, /^((?!chrome|android).)*safari/i];
+const test_re = [/hello/, /[0-9]{3,}/, /[0-9]{undefined}/, /[0-9]{5}/, /(?!hi)hello/, /(?=hello)hello/, /(?=[12345])./, /webkit|android|google/, /(?:webkit)?google/, /^\bGiggles$/, /^(.*)\1(Hello)\2$/, /^([12345]+)\1$/, /^Hello.\bWorld$/, /^<(.+)>.+<\1>$/, /(Capture)\1/, /^\bGiggles\b$/, /^((?!chrome|android).)*safari/i];
 
 let failed = 0;
+
 
 test_re.forEach(re => {
     try {
@@ -106,15 +107,19 @@ test_re.forEach(re => {
         if (s != 'GOOD') {
             throw re + ' because ' + s;
         }
-
     } catch (e) {
         failed += 1;
         console.log('Failed', '' + e);
     }
 });
 
+
+solver.exitOstrich();
+solver.waitForExit();
+
 if (failed) {
     throw failed + ' errors';
 }
+
 
 module.exports = Test;

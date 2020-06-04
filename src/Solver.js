@@ -44,35 +44,48 @@ class Solver {
 	destroy() {
 		Z3.Z3_solver_dec_ref(this.context.ctx, this.slv);
 		this.context.writeToOstrich("(exit)");
-		console.log("Exit");
+	}
+
+	exitOstrich() {
+		this.context.writeToOstrich("(exit)");
+	}
+
+	waitForExit() {
+        
 	}
 
 	reset() {
 		Z3.Z3_solver_reset(this.context.ctx, this.slv);
 		this.context.writeToOstrich("(reset)");
-		console.log("Reset");
 	}
 
 	push() {
 		Z3.Z3_solver_push(this.context.ctx, this.slv);	
 		this.context.writeToOstrich("(push 1)");
-		console.log("Push");
 	}
 
 	pop() {
 		Z3.Z3_solver_pop(this.context.ctx, this.slv, 1);
 		this.context.writeToOstrich("(pop 1)");
-		console.log("Pop");
 	}
 
     
 
 	check() {
-		console.log(this.toString());
+        
 		if (useZ3) {
 			return Z3.Z3_solver_check(this.context.ctx, this.slv) === Z3.TRUE;
 		} else {
 			this.context.writeToOstrich("(check-sat)");
+			var c = 1;
+            
+			while(this.context.waitingForOstrich){
+				c++;
+				if (c % 1000000000 == 0) {
+					console.log("Waiting for ostrich...");
+				}
+			}
+			this.context.waitingForOstrich = true;
 		}
 	}
 

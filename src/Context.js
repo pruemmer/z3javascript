@@ -23,15 +23,31 @@ class Context {
 		this.ostrich = spawn("/home/henrik/UU/bachelor/ostrich/ostrich", ["+stdin", "+incremental"], {
 			stdio: [
 				"pipe",
-				0,
+				"pipe",
 				0
 			]
 		});
-        
-		this.ostrich.on("close", (code) => {
-			console.log("what happened?");
-			console.log("Error code: " + code);
+		this.runningOstrich = true;
+		this.waitingForOstrich = true;
+		
+		this.ostrich.stdout.on("readable", () => {
+			let chunk;
+			while (null !== (chunk = this.ostrich.stdout.read())) {
+				console.log(`Received ${chunk.length} bytes of data.`);
+			}
+			this.waitingForOstrich = false;
 		});
+        
+		this.ostrich.on("exit", () => {
+			console.log("Ostrich has shut down.");
+			this.runningOstrich = false;
+		});
+
+		if (this.ostrich.stdout.readable){
+			console.log("Stream from ostrich should be working");
+		} else {
+			console.log("Stream from ostrich is not working");
+		}
 	}
     
 	writeToOstrich(string) {
@@ -287,8 +303,8 @@ class Context {
 		if (symb_kind == 1) {
 			this.writeToOstrich("(declare-fun " + res.toString() + " () String)");
 		} else {
-            console.log("\n\n~~~~~~~~~~~PANIC!!!!~~~~~~~~~~\n\n")
-        }
+			console.log("\n\n~~~~~~~~~~~PANIC!!!!~~~~~~~~~~\n\n");
+		}
 		return res;
 	}
 
