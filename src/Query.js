@@ -15,7 +15,7 @@ class Query {
 
     
 	getModel(solver) {
-		this.store(solver.toString());
+		//this.store(solver.toString());
 		return Query.process(solver, [this]);
 	}
 }

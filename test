@@ -1,3 +1,4 @@
 ./scripts/build_wrapper
+gcc -Wall piper2.c -o piper2
 node bin/Tests/Z3Test.js
 exit $?

@@ -6,6 +6,20 @@ import Z3 from "./Z3Loader";
 import Z3Utils from "./Z3Utils";
 import Expr from "./Expr";
 
+const { spawn } = require("child_process");
+
+/*
+ostrich.on("exit", () => {
+	console.log("Ostrich has shut down.");
+	//this.runningOstrich = false;
+});
+
+ostrich.stdout.on("data", (data) => {
+	console.log(`Received ${data.length} bytes of data.`); 
+	//waitingForOstrich = false;
+});
+
+*/
 class Context {
 
 	constructor() {
@@ -17,52 +31,36 @@ class Context {
 
 		this.ctx = Z3.Z3_mk_context_rc(config);
 		Z3.Z3_del_config(config);
-
         
-		const { spawn } = require("child_process");
+		this.fs = require("fs");
+		this.namedPipe = this.fs.openSync("whatever.txt", "w+");
+
 		this.ostrich = spawn("/home/henrik/UU/bachelor/ostrich/ostrich", ["+stdin", "+incremental"], {
-			stdio: [
-				"pipe",
-				"pipe",
-				0
-			]
-		});
-		this.runningOstrich = true;
-		this.waitingForOstrich = true;
-		
-		this.ostrich.stdout.on("readable", () => {
-			let chunk;
-			while (null !== (chunk = this.ostrich.stdout.read())) {
-				console.log(`Received ${chunk.length} bytes of data.`);
-			}
-			this.waitingForOstrich = false;
+	        stdio: [
+		        "pipe",
+		        this.namedPipe,
+		        0
+	        ]
 		});
         
-		this.ostrich.on("exit", () => {
-			console.log("Ostrich has shut down.");
-			this.runningOstrich = false;
-		});
-
-		if (this.ostrich.stdout.readable){
-			console.log("Stream from ostrich should be working");
-		} else {
-			console.log("Stream from ostrich is not working");
-		}
 	}
     
 	writeToOstrich(string) {
+		
 		console.log("\n\n Writing to ostrich\n @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		console.log(string);
-		console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		if (this.ostrich.stdin.write(string + "\n") == false) {
 			console.log("ostrich.stdin overflow, nothing was written");
+		} else {
+			console.log(string);
 		}
+		console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		
 
 	}
 
 
 	store(thingy) {
-		this.fs.writeFileSync("./context_output3.txt", this.store_increment + ". " + thingy + "\n",{flag: "a"});
+		this.fs.writeFileSync("./outputter.txt", thingy + "\n",{flag: "a"});
 		return thingy;
 	}
 
