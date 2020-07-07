@@ -33,7 +33,8 @@ class Context {
 		Z3.Z3_del_config(config);
         
 		this.fs = require("fs");
-		this.namedPipe = this.fs.openSync("whatever.txt", "w+");
+		this.namedPipeString = "whatever.txt";
+		this.namedPipe = this.fs.openSync(this.namedPipeString, "w+");
 
 		this.ostrich = spawn("/home/henrik/UU/bachelor/ostrich/ostrich", ["+stdin", "+incremental"], {
 	        stdio: [
@@ -47,7 +48,7 @@ class Context {
     
 	writeToOstrich(string) {
 		
-		console.log("\n\n Writing to ostrich\n @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		console.log("\n\n Writing to ostrich\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		if (this.ostrich.stdin.write(string + "\n") == false) {
 			console.log("ostrich.stdin overflow, nothing was written");
 		} else {

@@ -16,6 +16,11 @@ class Model {
 		return Z3.Z3_model_to_string(this.context.ctx, this.mdl);
 	}
 
+	ostrichModelEval() {
+		//var res = childProcess.spawnSync("./piper2");
+		this._output = res.stdout.toString();
+	}
+    
 	eval(expr) {
 		let res = Z3.bindings_model_eval(this.context.ctx, this.mdl, expr.ast);
 		//TODO: Propogating array lengths like this is horrible, find a better way

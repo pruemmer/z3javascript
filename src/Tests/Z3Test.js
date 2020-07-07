@@ -6,7 +6,11 @@
 import Z3 from '../Z3';
 
 const ctx = new Z3.Context();
-const solver = new Z3.Solver(ctx, false, []);
+const solver = new Z3.Solver(ctx, true, [
+	{ name: "smt.string_solver", value: "z3str3" }, 
+	{ name: "random_seed", value: Math.floor(Math.random() * Math.pow(2, 32))},
+	{ name: "phase_selection", value: 5 }
+]);
 
 function Test(Origin) {
 	solver.reset();
@@ -94,7 +98,7 @@ function Test(Origin) {
 	}
 }
 
-const test_re = [/hello/];//, /[0-9]{3,}/, /[0-9]{undefined}/, /[0-9]{5}/, /(?!hi)hello/, /(?=hello)hello/, /(?=[12345])./, /webkit|android|google/, /(?:webkit)?google/, /^\bGiggles$/, /^(.*)\1(Hello)\2$/, /^([12345]+)\1$/, /^Hello.\bWorld$/, /^<(.+)>.+<\1>$/, /(Capture)\1/, /^\bGiggles\b$/, /^((?!chrome|android).)*safari/i];
+const test_re = [/hello/, /[0-9]{3,}/, /[0-9]{undefined}/, /[0-9]{5}/, /(?!hi)hello/, /(?=hello)hello/, /(?=[12345])./, /webkit|android|google/, /(?:webkit)?google/, /^\bGiggles$/, /^(.*)\1(Hello)\2$/, /^([12345]+)\1$/, /^Hello.\bWorld$/, /^<(.+)>.+<\1>$/, /(Capture)\1/, /^\bGiggles\b$/, /^((?!chrome|android).)*safari/i];
 
 let failed = 0;
 
