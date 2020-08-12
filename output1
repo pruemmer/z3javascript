@@ -1,0 +1,2808 @@
+Cleaning Sources
+
+/home/henrik/UU/bachelor/z3javascript/.eslintrc.json
+  0:0  warning  File ignored by default.  Use a negated ignore pattern (like "--ignore-pattern '!<relative/path/to/filename>'") to override
+
+/home/henrik/UU/bachelor/z3javascript/src/Expr.js
+  78:109  warning  Unnecessary escape character: \a  no-useless-escape
+
+✖ 2 problems (0 errors, 2 warnings)
+
+Successfully compiled 14 files with Babel.
+Testing /hello/
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(reset)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |0 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |0 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |0 Fill 3| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |0 Fill 4| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun TestC0 () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re TestC0
+           (re.++ (re.* (re.range "\x00" "\xff"))
+                  (str.to.re "hello")
+                  (re.* (re.range "\x00" "\xff")))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (=> (str.in.re TestC0
+               (re.++ (re.* (re.range "\x00" "\xff"))
+                      (str.to.re "hello")
+                      (re.* (re.range "\x00" "\xff"))))
+    (= TestC0 (str.++ |0 Fill 2| "" "" |0 Fill 1| |0 Fill 3|))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |0 Fill 1| (str.to.re "hello")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re (str.++ "" "" |0 Fill 1|) (str.to.re "hello")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (= |0 Fill 4| (str.++ "" "" |0 Fill 1|)))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(push 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(check-sat)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(pop 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Failed /hello/ because UNSAT
+Testing /[0-9]{3,}/
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(reset)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |1 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |1 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |1 Fill 3| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |1 Fill 4| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun TestC0 () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re TestC0
+           (re.++ (re.* (re.range "\x00" "\xff"))
+                  ((_ re.loop 3 3) (re.range "0" "9"))
+                  (re.* (re.range "0" "9"))
+                  (re.* (re.range "\x00" "\xff")))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (=> (str.in.re TestC0
+               (re.++ (re.* (re.range "\x00" "\xff"))
+                      ((_ re.loop 3 3) (re.range "0" "9"))
+                      (re.* (re.range "0" "9"))
+                      (re.* (re.range "\x00" "\xff"))))
+    (= TestC0 (str.++ |1 Fill 2| "" "" |1 Fill 1| |1 Fill 3|))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |1 Fill 1|
+           (re.++ ((_ re.loop 3 3) (re.range "0" "9"))
+                  (re.* (re.range "0" "9")))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re (str.++ "" "" |1 Fill 1|)
+           (re.++ ((_ re.loop 3 3) (re.range "0" "9"))
+                  (re.* (re.range "0" "9")))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (= |1 Fill 4| (str.++ "" "" |1 Fill 1|)))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(push 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(check-sat)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(pop 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Failed /[0-9]{3,}/ because UNSAT
+Testing /[0-9]{undefined}/
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(reset)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |2 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |2 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |2 Fill 3| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |2 Fill 4| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |2 Fill 5| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |2 Fill 6| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun TestC0 () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re TestC0
+           (re.++ (re.* (re.range "\x00" "\xff"))
+                  (re.range "0" "9")
+                  (str.to.re "{undefined")
+                  (str.to.re "}")
+                  (re.* (re.range "\x00" "\xff")))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (=> (str.in.re TestC0
+               (re.++ (re.* (re.range "\x00" "\xff"))
+                      (re.range "0" "9")
+                      (str.to.re "{undefined")
+                      (str.to.re "}")
+                      (re.* (re.range "\x00" "\xff"))))
+    (= TestC0
+       (str.++ |2 Fill 4| "" "" |2 Fill 1| |2 Fill 2| |2 Fill 3| |2 Fill 5|))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |2 Fill 1| (re.range "0" "9")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |2 Fill 2| (str.to.re "{undefined")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |2 Fill 3| (str.to.re "}")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re (str.++ "" "" |2 Fill 1| |2 Fill 2| |2 Fill 3|)
+           (re.++ (re.range "0" "9") (str.to.re "{undefined") (str.to.re "}"))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (= |2 Fill 6| (str.++ "" "" |2 Fill 1| |2 Fill 2| |2 Fill 3|)))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(push 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(check-sat)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(pop 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Failed /[0-9]{undefined}/ because UNSAT
+Testing /[0-9]{5}/
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(reset)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |3 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |3 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |3 Fill 3| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |3 Fill 4| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun TestC0 () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re TestC0
+           (re.++ (re.* (re.range "\x00" "\xff"))
+                  ((_ re.loop 5 5) (re.range "0" "9"))
+                  (re.* (re.range "\x00" "\xff")))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (=> (str.in.re TestC0
+               (re.++ (re.* (re.range "\x00" "\xff"))
+                      ((_ re.loop 5 5) (re.range "0" "9"))
+                      (re.* (re.range "\x00" "\xff"))))
+    (= TestC0 (str.++ |3 Fill 2| "" "" |3 Fill 1| |3 Fill 3|))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |3 Fill 1| ((_ re.loop 5 5) (re.range "0" "9"))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re (str.++ "" "" |3 Fill 1|) ((_ re.loop 5 5) (re.range "0" "9"))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (= |3 Fill 4| (str.++ "" "" |3 Fill 1|)))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(push 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(check-sat)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(pop 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Failed /[0-9]{5}/ because UNSAT
+Testing /(?!hi)hello/
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(reset)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |4 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |4 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |4 Fill 3| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |5 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |5 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |6 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |6 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |6 Fill 3| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |7 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |7 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |4 Fill 4| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun TestC0 () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re TestC0
+           (re.inter (re.++ (re.* (re.range "\x00" "\xff"))
+                            (str.to.re "hello")
+                            (re.* (re.range "\x00" "\xff")))
+                     (re.++ (re.* (re.range "\x00" "\xff"))
+                            (str.to.re "")
+                            (re.inter (re.++ (str.to.re "hello")
+                                             (re.* (re.range "\x00" "\xff")))
+                                      (re.complement (re.++ (str.to.re "hi")
+                                                            (re.* (re.range "\x00"
+                                                                            "\xff")))))))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (=> (str.in.re TestC0
+               (re.inter (re.++ (re.* (re.range "\x00" "\xff"))
+                                (str.to.re "hello")
+                                (re.* (re.range "\x00" "\xff")))
+                         (re.++ (re.* (re.range "\x00" "\xff"))
+                                (str.to.re "")
+                                (re.inter (re.++ (str.to.re "hello")
+                                                 (re.* (re.range "\x00" "\xff")))
+                                          (re.complement (re.++ (str.to.re "hi")
+                                                                (re.* (re.range "\x00"
+                                                                                "\xff"))))))))
+    (= TestC0 (str.++ |4 Fill 2| "" "" |4 Fill 1| |4 Fill 3|))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |4 Fill 1| (str.to.re "hello")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re (str.++ "" "" |4 Fill 1|) (str.to.re "hello")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (= |4 Fill 4| (str.++ "" "" |4 Fill 1|)))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(push 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(check-sat)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(pop 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Failed /(?!hi)hello/ because UNSAT
+Testing /(?=hello)hello/
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(reset)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |8 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |8 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |8 Fill 3| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |9 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |9 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |10 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |10 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |10 Fill 3| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |11 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |11 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |8 Fill 4| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun TestC0 () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re TestC0
+           (re.inter (re.++ (re.* (re.range "\x00" "\xff"))
+                            (str.to.re "hello")
+                            (re.* (re.range "\x00" "\xff")))
+                     (re.++ (re.* (re.range "\x00" "\xff"))
+                            (str.to.re "")
+                            (re.inter (re.++ (str.to.re "hello")
+                                             (re.* (re.range "\x00" "\xff")))
+                                      (re.++ (str.to.re "hello")
+                                             (re.* (re.range "\x00" "\xff"))))))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (=> (str.in.re TestC0
+               (re.inter (re.++ (re.* (re.range "\x00" "\xff"))
+                                (str.to.re "hello")
+                                (re.* (re.range "\x00" "\xff")))
+                         (re.++ (re.* (re.range "\x00" "\xff"))
+                                (str.to.re "")
+                                (re.inter (re.++ (str.to.re "hello")
+                                                 (re.* (re.range "\x00" "\xff")))
+                                          (re.++ (str.to.re "hello")
+                                                 (re.* (re.range "\x00" "\xff")))))))
+    (= TestC0 (str.++ |8 Fill 2| "" "" |8 Fill 1| |8 Fill 3|))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |8 Fill 1| (str.to.re "hello")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re (str.++ "" "" |8 Fill 1|) (str.to.re "hello")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (= |8 Fill 4| (str.++ "" "" |8 Fill 1|)))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(push 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(check-sat)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(pop 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Failed /(?=hello)hello/ because UNSAT
+Testing /(?=[12345])./
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(reset)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |12 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |12 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |12 Fill 3| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |13 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |13 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |14 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |14 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |14 Fill 3| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |15 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |15 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |12 Fill 4| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun TestC0 () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re TestC0
+           (re.inter (re.++ (re.* (re.range "\x00" "\xff"))
+                            (re.union (re.range "\x00" "\x09")
+                                      (re.range "\v" "\xff"))
+                            (re.* (re.range "\x00" "\xff")))
+                     (re.++ (re.* (re.range "\x00" "\xff"))
+                            (str.to.re "")
+                            (re.inter (re.++ (re.union (re.range "\x00" "\x09")
+                                                       (re.range "\v" "\xff"))
+                                             (re.* (re.range "\x00" "\xff")))
+                                      (re.++ (re.union (str.to.re "1")
+                                                       (str.to.re "2")
+                                                       (str.to.re "3")
+                                                       (str.to.re "4")
+                                                       (str.to.re "5"))
+                                             (re.* (re.range "\x00" "\xff"))))))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (=> (str.in.re TestC0
+               (re.inter (re.++ (re.* (re.range "\x00" "\xff"))
+                                (re.union (re.range "\x00" "\x09")
+                                          (re.range "\v" "\xff"))
+                                (re.* (re.range "\x00" "\xff")))
+                         (re.++ (re.* (re.range "\x00" "\xff"))
+                                (str.to.re "")
+                                (re.inter (re.++ (re.union (re.range "\x00"
+                                                                     "\x09")
+                                                           (re.range "\v"
+                                                                     "\xff"))
+                                                 (re.* (re.range "\x00" "\xff")))
+                                          (re.++ (re.union (str.to.re "1")
+                                                           (str.to.re "2")
+                                                           (str.to.re "3")
+                                                           (str.to.re "4")
+                                                           (str.to.re "5"))
+                                                 (re.* (re.range "\x00" "\xff")))))))
+    (= TestC0 (str.++ |12 Fill 2| "" "" |12 Fill 1| |12 Fill 3|))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |12 Fill 1|
+           (re.union (re.range "\x00" "\x09") (re.range "\v" "\xff"))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re (str.++ "" "" |12 Fill 1|)
+           (re.union (re.range "\x00" "\x09") (re.range "\v" "\xff"))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (= |12 Fill 4| (str.++ "" "" |12 Fill 1|)))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(push 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(check-sat)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(pop 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Failed /(?=[12345])./ because UNSAT
+Testing /webkit|android|google/
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(reset)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |16 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |16 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |16 Fill 3| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |16 Fill 4| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |16 Fill 5| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |16 Fill 6| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |16 Fill 7| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |16 Fill 8| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun TestC0 () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re TestC0
+           (re.++ (re.* (re.range "\x00" "\xff"))
+                  (re.union (str.to.re "webkit")
+                            (str.to.re "android")
+                            (str.to.re "google"))
+                  (re.* (re.range "\x00" "\xff")))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (=> (str.in.re TestC0
+               (re.++ (re.* (re.range "\x00" "\xff"))
+                      (re.union (str.to.re "webkit")
+                                (str.to.re "android")
+                                (str.to.re "google"))
+                      (re.* (re.range "\x00" "\xff"))))
+    (= TestC0 (str.++ |16 Fill 6| |16 Fill 5| |16 Fill 7|))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |16 Fill 1| (str.to.re "webkit")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |16 Fill 2| (str.to.re "android")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |16 Fill 3| (str.to.re "google")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (=> (= |16 Fill 4| (str.++ "" "" |16 Fill 2|)) and))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (=> (= |16 Fill 4| (str.++ "" "" "" |16 Fill 3|)) and))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (or (= |16 Fill 4| (str.++ "" "" |16 Fill 2|))
+    (= |16 Fill 4| (str.++ "" "" "" |16 Fill 3|))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (=> (= |16 Fill 5| (str.++ "" "" |16 Fill 1|)) and))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (=> (= |16 Fill 5| (str.++ "" |16 Fill 4|)) and))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (or (= |16 Fill 5| (str.++ "" "" |16 Fill 1|))
+    (= |16 Fill 5| (str.++ "" |16 Fill 4|))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |16 Fill 5|
+           (re.union (str.to.re "webkit")
+                     (str.to.re "android")
+                     (str.to.re "google"))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (= |16 Fill 8| |16 Fill 5|))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(push 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(check-sat)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(pop 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Failed /webkit|android|google/ because UNSAT
+Testing /(?:webkit)?google/
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(reset)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |17 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |17 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |17 Fill 3| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |17 Fill 4| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |17 Fill 5| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun TestC0 () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re TestC0
+           (re.++ (re.* (re.range "\x00" "\xff"))
+                  (re.opt (str.to.re "webkit"))
+                  (str.to.re "google")
+                  (re.* (re.range "\x00" "\xff")))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (=> (str.in.re TestC0
+               (re.++ (re.* (re.range "\x00" "\xff"))
+                      (re.opt (str.to.re "webkit"))
+                      (str.to.re "google")
+                      (re.* (re.range "\x00" "\xff"))))
+    (= TestC0 (str.++ |17 Fill 3| "" "" "" |17 Fill 1| |17 Fill 2| |17 Fill 4|))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |17 Fill 1| (str.to.re "webkit")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |17 Fill 2| (str.to.re "google")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re (str.++ "" "" "" |17 Fill 1| |17 Fill 2|)
+           (re.++ (re.opt (str.to.re "webkit")) (str.to.re "google"))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (= |17 Fill 5| (str.++ "" "" "" |17 Fill 1| |17 Fill 2|)))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(push 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(check-sat)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(pop 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Failed /(?:webkit)?google/ because UNSAT
+Testing /^\bGiggles$/
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(reset)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |18 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |18 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |19 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |20 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |20 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |18 Fill 3| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun TestC0 () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re TestC0
+           (re.inter (re.++ (str.to.re "") (str.to.re "Giggles"))
+                     (re.union (re.++ (re.union (re.inter (str.to.re "")
+                                                          (re.++ (re.* (re.range "\x00"
+                                                                                 "\xff"))
+                                                                 (re.complement (re.union (re.range "a"
+                                                                                                    "z")
+                                                                                          (re.range "A"
+                                                                                                    "Z")
+                                                                                          (re.range "0"
+                                                                                                    "9")
+                                                                                          (str.to.re "_")))))
+                                                (str.to.re ""))
+                                      (re.inter (str.to.re "Giggles")
+                                                (re.++ (re.union (re.range "a"
+                                                                           "z")
+                                                                 (re.range "A"
+                                                                           "Z")
+                                                                 (re.range "0"
+                                                                           "9")
+                                                                 (str.to.re "_"))
+                                                       (re.* (re.range "\x00"
+                                                                       "\xff")))))
+                               (re.++ (re.inter (str.to.re "")
+                                                (re.++ (re.* (re.range "\x00"
+                                                                       "\xff"))
+                                                       (re.union (re.range "a"
+                                                                           "z")
+                                                                 (re.range "A"
+                                                                           "Z")
+                                                                 (re.range "0"
+                                                                           "9")
+                                                                 (str.to.re "_"))))
+                                      (re.union (re.inter (str.to.re "Giggles")
+                                                          (re.++ (re.complement (re.union (re.range "a"
+                                                                                                    "z")
+                                                                                          (re.range "A"
+                                                                                                    "Z")
+                                                                                          (re.range "0"
+                                                                                                    "9")
+                                                                                          (str.to.re "_")))
+                                                                 (re.* (re.range "\x00"
+                                                                                 "\xff"))))
+                                                (str.to.re "")))))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (=> (str.in.re TestC0
+               (re.inter (re.++ (str.to.re "") (str.to.re "Giggles"))
+                         (re.union (re.++ (re.union (re.inter (str.to.re "")
+                                                              (re.++ (re.* (re.range "\x00"
+                                                                                     "\xff"))
+                                                                     (re.complement (re.union (re.range "a"
+                                                                                                        "z")
+                                                                                              (re.range "A"
+                                                                                                        "Z")
+                                                                                              (re.range "0"
+                                                                                                        "9")
+                                                                                              (str.to.re "_")))))
+                                                    (str.to.re ""))
+                                          (re.inter (str.to.re "Giggles")
+                                                    (re.++ (re.union (re.range "a"
+                                                                               "z")
+                                                                     (re.range "A"
+                                                                               "Z")
+                                                                     (re.range "0"
+                                                                               "9")
+                                                                     (str.to.re "_"))
+                                                           (re.* (re.range "\x00"
+                                                                           "\xff")))))
+                                   (re.++ (re.inter (str.to.re "")
+                                                    (re.++ (re.* (re.range "\x00"
+                                                                           "\xff"))
+                                                           (re.union (re.range "a"
+                                                                               "z")
+                                                                     (re.range "A"
+                                                                               "Z")
+                                                                     (re.range "0"
+                                                                               "9")
+                                                                     (str.to.re "_"))))
+                                          (re.union (re.inter (str.to.re "Giggles")
+                                                              (re.++ (re.complement (re.union (re.range "a"
+                                                                                                        "z")
+                                                                                              (re.range "A"
+                                                                                                        "Z")
+                                                                                              (re.range "0"
+                                                                                                        "9")
+                                                                                              (str.to.re "_")))
+                                                                     (re.* (re.range "\x00"
+                                                                                     "\xff"))))
+                                                    (str.to.re ""))))))
+    (= TestC0 (str.++ "" "" |18 Fill 1| |18 Fill 2|))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |18 Fill 1| (str.to.re "")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |18 Fill 2| (str.to.re "Giggles")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re (str.++ "" "" |18 Fill 1| |18 Fill 2|)
+           (re.++ (str.to.re "") (str.to.re "Giggles"))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (= |18 Fill 3| (str.++ "" "" |18 Fill 1| |18 Fill 2|)))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(push 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(check-sat)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(pop 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Failed /^\bGiggles$/ because UNSAT
+Testing /^(.*)\1(Hello)\2$/
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(reset)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |21 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |21 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |21 Fill 3| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |21 Fill 4| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |21 Fill 5| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun TestC0 () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re TestC0
+           (re.++ (re.* (re.union (re.range "\x00" "\x09")
+                                  (re.range "\v" "\xff")))
+                  (re.* (re.union (re.range "\x00" "\x09")
+                                  (re.range "\v" "\xff")))
+                  (str.to.re "Hello")
+                  (str.to.re "Hello"))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (=> (str.in.re TestC0
+               (re.++ (re.* (re.union (re.range "\x00" "\x09")
+                                      (re.range "\v" "\xff")))
+                      (re.* (re.union (re.range "\x00" "\x09")
+                                      (re.range "\v" "\xff")))
+                      (str.to.re "Hello")
+                      (str.to.re "Hello")))
+    (= TestC0
+       (str.++ ""
+               ""
+               (str.++ "" "" |21 Fill 1|)
+               (str.++ "" "" |21 Fill 1|)
+               (str.++ "" "" |21 Fill 2|)
+               (str.++ "" "" |21 Fill 2|)))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |21 Fill 1|
+           (re.* (re.union (re.range "\x00" "\x09") (re.range "\v" "\xff")))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re (str.++ "" "" |21 Fill 1|)
+           (re.* (re.union (re.range "\x00" "\x09") (re.range "\v" "\xff")))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |21 Fill 2| (str.to.re "Hello")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re (str.++ "" "" |21 Fill 2|) (str.to.re "Hello")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re (str.++ ""
+                   ""
+                   (str.++ "" "" |21 Fill 1|)
+                   (str.++ "" "" |21 Fill 1|)
+                   (str.++ "" "" |21 Fill 2|)
+                   (str.++ "" "" |21 Fill 2|))
+           (re.++ (re.* (re.union (re.range "\x00" "\x09")
+                                  (re.range "\v" "\xff")))
+                  (re.* (re.union (re.range "\x00" "\x09")
+                                  (re.range "\v" "\xff")))
+                  (str.to.re "Hello")
+                  (str.to.re "Hello"))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (= |21 Fill 3|
+   (str.++ ""
+           ""
+           (str.++ "" "" |21 Fill 1|)
+           (str.++ "" "" |21 Fill 1|)
+           (str.++ "" "" |21 Fill 2|)
+           (str.++ "" "" |21 Fill 2|))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (= |21 Fill 4| (str.++ "" "" |21 Fill 1|)))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (= |21 Fill 5| (str.++ "" "" |21 Fill 2|)))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(push 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(check-sat)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(pop 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Failed /^(.*)\1(Hello)\2$/ because UNSAT
+Testing /^([12345]+)\1$/
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(reset)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |22 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |22 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |22 Fill 3| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun TestC0 () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re TestC0
+           (re.++ (re.+ (re.union (str.to.re "1")
+                                  (str.to.re "2")
+                                  (str.to.re "3")
+                                  (str.to.re "4")
+                                  (str.to.re "5")))
+                  (re.+ (re.union (str.to.re "1")
+                                  (str.to.re "2")
+                                  (str.to.re "3")
+                                  (str.to.re "4")
+                                  (str.to.re "5"))))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (=> (str.in.re TestC0
+               (re.++ (re.+ (re.union (str.to.re "1")
+                                      (str.to.re "2")
+                                      (str.to.re "3")
+                                      (str.to.re "4")
+                                      (str.to.re "5")))
+                      (re.+ (re.union (str.to.re "1")
+                                      (str.to.re "2")
+                                      (str.to.re "3")
+                                      (str.to.re "4")
+                                      (str.to.re "5")))))
+    (= TestC0
+       (str.++ "" "" (str.++ "" "" |22 Fill 1|) (str.++ "" "" |22 Fill 1|)))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |22 Fill 1|
+           (re.+ (re.union (str.to.re "1")
+                           (str.to.re "2")
+                           (str.to.re "3")
+                           (str.to.re "4")
+                           (str.to.re "5")))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re (str.++ "" "" |22 Fill 1|)
+           (re.+ (re.union (str.to.re "1")
+                           (str.to.re "2")
+                           (str.to.re "3")
+                           (str.to.re "4")
+                           (str.to.re "5")))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re (str.++ "" "" (str.++ "" "" |22 Fill 1|) (str.++ "" "" |22 Fill 1|))
+           (re.++ (re.+ (re.union (str.to.re "1")
+                                  (str.to.re "2")
+                                  (str.to.re "3")
+                                  (str.to.re "4")
+                                  (str.to.re "5")))
+                  (re.+ (re.union (str.to.re "1")
+                                  (str.to.re "2")
+                                  (str.to.re "3")
+                                  (str.to.re "4")
+                                  (str.to.re "5"))))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (= |22 Fill 2|
+   (str.++ "" "" (str.++ "" "" |22 Fill 1|) (str.++ "" "" |22 Fill 1|))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (= |22 Fill 3| (str.++ "" "" |22 Fill 1|)))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(push 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(check-sat)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(pop 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Failed /^([12345]+)\1$/ because UNSAT
+Testing /^Hello.\bWorld$/
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(reset)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |23 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |23 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |23 Fill 3| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |23 Fill 4| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |24 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |24 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |24 Fill 3| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |25 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |25 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |23 Fill 5| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun TestC0 () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re TestC0
+           (re.inter (re.++ (re.++ (str.to.re "Hello")
+                                   (re.union (re.range "\x00" "\x09")
+                                             (re.range "\v" "\xff")))
+                            (str.to.re "")
+                            (str.to.re "World"))
+                     (re.union (re.++ (re.union (re.inter (re.++ (str.to.re "Hello")
+                                                                 (re.union (re.range "\x00"
+                                                                                     "\x09")
+                                                                           (re.range "\v"
+                                                                                     "\xff")))
+                                                          (re.++ (re.* (re.range "\x00"
+                                                                                 "\xff"))
+                                                                 (re.complement (re.union (re.range "a"
+                                                                                                    "z")
+                                                                                          (re.range "A"
+                                                                                                    "Z")
+                                                                                          (re.range "0"
+                                                                                                    "9")
+                                                                                          (str.to.re "_")))))
+                                                (str.to.re ""))
+                                      (re.inter (str.to.re "World")
+                                                (re.++ (re.union (re.range "a"
+                                                                           "z")
+                                                                 (re.range "A"
+                                                                           "Z")
+                                                                 (re.range "0"
+                                                                           "9")
+                                                                 (str.to.re "_"))
+                                                       (re.* (re.range "\x00"
+                                                                       "\xff")))))
+                               (re.++ (re.inter (re.++ (str.to.re "Hello")
+                                                       (re.union (re.range "\x00"
+                                                                           "\x09")
+                                                                 (re.range "\v"
+                                                                           "\xff")))
+                                                (re.++ (re.* (re.range "\x00"
+                                                                       "\xff"))
+                                                       (re.union (re.range "a"
+                                                                           "z")
+                                                                 (re.range "A"
+                                                                           "Z")
+                                                                 (re.range "0"
+                                                                           "9")
+                                                                 (str.to.re "_"))))
+                                      (re.union (re.inter (str.to.re "World")
+                                                          (re.++ (re.complement (re.union (re.range "a"
+                                                                                                    "z")
+                                                                                          (re.range "A"
+                                                                                                    "Z")
+                                                                                          (re.range "0"
+                                                                                                    "9")
+                                                                                          (str.to.re "_")))
+                                                                 (re.* (re.range "\x00"
+                                                                                 "\xff"))))
+                                                (str.to.re "")))))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (=> (str.in.re TestC0
+               (re.inter (re.++ (re.++ (str.to.re "Hello")
+                                       (re.union (re.range "\x00" "\x09")
+                                                 (re.range "\v" "\xff")))
+                                (str.to.re "")
+                                (str.to.re "World"))
+                         (re.union (re.++ (re.union (re.inter (re.++ (str.to.re "Hello")
+                                                                     (re.union (re.range "\x00"
+                                                                                         "\x09")
+                                                                               (re.range "\v"
+                                                                                         "\xff")))
+                                                              (re.++ (re.* (re.range "\x00"
+                                                                                     "\xff"))
+                                                                     (re.complement (re.union (re.range "a"
+                                                                                                        "z")
+                                                                                              (re.range "A"
+                                                                                                        "Z")
+                                                                                              (re.range "0"
+                                                                                                        "9")
+                                                                                              (str.to.re "_")))))
+                                                    (str.to.re ""))
+                                          (re.inter (str.to.re "World")
+                                                    (re.++ (re.union (re.range "a"
+                                                                               "z")
+                                                                     (re.range "A"
+                                                                               "Z")
+                                                                     (re.range "0"
+                                                                               "9")
+                                                                     (str.to.re "_"))
+                                                           (re.* (re.range "\x00"
+                                                                           "\xff")))))
+                                   (re.++ (re.inter (re.++ (str.to.re "Hello")
+                                                           (re.union (re.range "\x00"
+                                                                               "\x09")
+                                                                     (re.range "\v"
+                                                                               "\xff")))
+                                                    (re.++ (re.* (re.range "\x00"
+                                                                           "\xff"))
+                                                           (re.union (re.range "a"
+                                                                               "z")
+                                                                     (re.range "A"
+                                                                               "Z")
+                                                                     (re.range "0"
+                                                                               "9")
+                                                                     (str.to.re "_"))))
+                                          (re.union (re.inter (str.to.re "World")
+                                                              (re.++ (re.complement (re.union (re.range "a"
+                                                                                                        "z")
+                                                                                              (re.range "A"
+                                                                                                        "Z")
+                                                                                              (re.range "0"
+                                                                                                        "9")
+                                                                                              (str.to.re "_")))
+                                                                     (re.* (re.range "\x00"
+                                                                                     "\xff"))))
+                                                    (str.to.re ""))))))
+    (= TestC0 (str.++ "" "" |23 Fill 1| |23 Fill 2| |23 Fill 3| |23 Fill 4|))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |23 Fill 1| (str.to.re "Hello")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |23 Fill 2|
+           (re.union (re.range "\x00" "\x09") (re.range "\v" "\xff"))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |23 Fill 3| (str.to.re "")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |23 Fill 4| (str.to.re "World")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re (str.++ "" "" |23 Fill 1| |23 Fill 2| |23 Fill 3| |23 Fill 4|)
+           (re.++ (str.to.re "Hello")
+                  (re.union (re.range "\x00" "\x09") (re.range "\v" "\xff"))
+                  (str.to.re "")
+                  (str.to.re "World"))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (= |23 Fill 5| (str.++ "" "" |23 Fill 1| |23 Fill 2| |23 Fill 3| |23 Fill 4|)))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(push 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(check-sat)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(pop 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Failed /^Hello.\bWorld$/ because UNSAT
+Testing /^<(.+)>.+<\1>$/
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(reset)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |26 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |26 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |26 Fill 3| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |26 Fill 4| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |26 Fill 5| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |26 Fill 6| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |26 Fill 7| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |26 Fill 8| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun TestC0 () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re TestC0
+           (re.++ (str.to.re "<")
+                  (re.+ (re.union (re.range "\x00" "\x09")
+                                  (re.range "\v" "\xff")))
+                  (str.to.re ">")
+                  (re.+ (re.union (re.range "\x00" "\x09")
+                                  (re.range "\v" "\xff")))
+                  (str.to.re "<")
+                  (re.+ (re.union (re.range "\x00" "\x09")
+                                  (re.range "\v" "\xff")))
+                  (str.to.re ">"))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (=> (str.in.re TestC0
+               (re.++ (str.to.re "<")
+                      (re.+ (re.union (re.range "\x00" "\x09")
+                                      (re.range "\v" "\xff")))
+                      (str.to.re ">")
+                      (re.+ (re.union (re.range "\x00" "\x09")
+                                      (re.range "\v" "\xff")))
+                      (str.to.re "<")
+                      (re.+ (re.union (re.range "\x00" "\x09")
+                                      (re.range "\v" "\xff")))
+                      (str.to.re ">")))
+    (= TestC0
+       (str.++ ""
+               ""
+               |26 Fill 1|
+               (str.++ "" "" |26 Fill 2|)
+               |26 Fill 3|
+               |26 Fill 4|
+               |26 Fill 5|
+               (str.++ "" "" |26 Fill 2|)
+               |26 Fill 6|))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |26 Fill 1| (str.to.re "<")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |26 Fill 2|
+           (re.+ (re.union (re.range "\x00" "\x09") (re.range "\v" "\xff")))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re (str.++ "" "" |26 Fill 2|)
+           (re.+ (re.union (re.range "\x00" "\x09") (re.range "\v" "\xff")))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |26 Fill 3| (str.to.re ">")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |26 Fill 4|
+           (re.+ (re.union (re.range "\x00" "\x09") (re.range "\v" "\xff")))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |26 Fill 5| (str.to.re "<")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |26 Fill 6| (str.to.re ">")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re (str.++ ""
+                   ""
+                   |26 Fill 1|
+                   (str.++ "" "" |26 Fill 2|)
+                   |26 Fill 3|
+                   |26 Fill 4|
+                   |26 Fill 5|
+                   (str.++ "" "" |26 Fill 2|)
+                   |26 Fill 6|)
+           (re.++ (str.to.re "<")
+                  (re.+ (re.union (re.range "\x00" "\x09")
+                                  (re.range "\v" "\xff")))
+                  (str.to.re ">")
+                  (re.+ (re.union (re.range "\x00" "\x09")
+                                  (re.range "\v" "\xff")))
+                  (str.to.re "<")
+                  (re.+ (re.union (re.range "\x00" "\x09")
+                                  (re.range "\v" "\xff")))
+                  (str.to.re ">"))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (= |26 Fill 7|
+   (str.++ ""
+           ""
+           |26 Fill 1|
+           (str.++ "" "" |26 Fill 2|)
+           |26 Fill 3|
+           |26 Fill 4|
+           |26 Fill 5|
+           (str.++ "" "" |26 Fill 2|)
+           |26 Fill 6|)))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (= |26 Fill 8| (str.++ "" "" |26 Fill 2|)))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(push 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(check-sat)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(pop 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Failed /^<(.+)>.+<\1>$/ because UNSAT
+Testing /(Capture)\1/
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(reset)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |27 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |27 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |27 Fill 3| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |27 Fill 4| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |27 Fill 5| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun TestC0 () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re TestC0
+           (re.++ (re.* (re.range "\x00" "\xff"))
+                  (str.to.re "Capture")
+                  (str.to.re "Capture")
+                  (re.* (re.range "\x00" "\xff")))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (=> (str.in.re TestC0
+               (re.++ (re.* (re.range "\x00" "\xff"))
+                      (str.to.re "Capture")
+                      (str.to.re "Capture")
+                      (re.* (re.range "\x00" "\xff"))))
+    (= TestC0
+       (str.++ |27 Fill 2|
+               ""
+               ""
+               (str.++ "" "" |27 Fill 1|)
+               (str.++ "" "" |27 Fill 1|)
+               |27 Fill 3|))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |27 Fill 1| (str.to.re "Capture")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re (str.++ "" "" |27 Fill 1|) (str.to.re "Capture")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re (str.++ "" "" (str.++ "" "" |27 Fill 1|) (str.++ "" "" |27 Fill 1|))
+           (re.++ (str.to.re "Capture") (str.to.re "Capture"))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (= |27 Fill 4|
+   (str.++ "" "" (str.++ "" "" |27 Fill 1|) (str.++ "" "" |27 Fill 1|))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (= |27 Fill 5| (str.++ "" "" |27 Fill 1|)))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(push 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(check-sat)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(pop 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Failed /(Capture)\1/ because UNSAT
+Testing /^\bGiggles\b$/
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(reset)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |28 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |28 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |28 Fill 3| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |29 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |30 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |30 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |31 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |31 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |32 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |28 Fill 4| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun TestC0 () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re TestC0
+           (re.inter (re.++ (str.to.re "") (str.to.re "Giggles") (str.to.re ""))
+                     (re.union (re.++ (re.union (re.inter (str.to.re "")
+                                                          (re.++ (re.* (re.range "\x00"
+                                                                                 "\xff"))
+                                                                 (re.complement (re.union (re.range "a"
+                                                                                                    "z")
+                                                                                          (re.range "A"
+                                                                                                    "Z")
+                                                                                          (re.range "0"
+                                                                                                    "9")
+                                                                                          (str.to.re "_")))))
+                                                (str.to.re ""))
+                                      (re.inter (str.to.re "Giggles")
+                                                (re.++ (re.union (re.range "a"
+                                                                           "z")
+                                                                 (re.range "A"
+                                                                           "Z")
+                                                                 (re.range "0"
+                                                                           "9")
+                                                                 (str.to.re "_"))
+                                                       (re.* (re.range "\x00"
+                                                                       "\xff")))))
+                               (re.++ (re.inter (str.to.re "")
+                                                (re.++ (re.* (re.range "\x00"
+                                                                       "\xff"))
+                                                       (re.union (re.range "a"
+                                                                           "z")
+                                                                 (re.range "A"
+                                                                           "Z")
+                                                                 (re.range "0"
+                                                                           "9")
+                                                                 (str.to.re "_"))))
+                                      (re.union (re.inter (str.to.re "Giggles")
+                                                          (re.++ (re.complement (re.union (re.range "a"
+                                                                                                    "z")
+                                                                                          (re.range "A"
+                                                                                                    "Z")
+                                                                                          (re.range "0"
+                                                                                                    "9")
+                                                                                          (str.to.re "_")))
+                                                                 (re.* (re.range "\x00"
+                                                                                 "\xff"))))
+                                                (str.to.re ""))))
+                     (re.union (re.++ (re.union (re.inter (str.to.re "Giggles")
+                                                          (re.++ (re.* (re.range "\x00"
+                                                                                 "\xff"))
+                                                                 (re.complement (re.union (re.range "a"
+                                                                                                    "z")
+                                                                                          (re.range "A"
+                                                                                                    "Z")
+                                                                                          (re.range "0"
+                                                                                                    "9")
+                                                                                          (str.to.re "_")))))
+                                                (str.to.re ""))
+                                      (re.inter (str.to.re "")
+                                                (re.++ (re.union (re.range "a"
+                                                                           "z")
+                                                                 (re.range "A"
+                                                                           "Z")
+                                                                 (re.range "0"
+                                                                           "9")
+                                                                 (str.to.re "_"))
+                                                       (re.* (re.range "\x00"
+                                                                       "\xff")))))
+                               (re.++ (re.inter (str.to.re "Giggles")
+                                                (re.++ (re.* (re.range "\x00"
+                                                                       "\xff"))
+                                                       (re.union (re.range "a"
+                                                                           "z")
+                                                                 (re.range "A"
+                                                                           "Z")
+                                                                 (re.range "0"
+                                                                           "9")
+                                                                 (str.to.re "_"))))
+                                      (re.union (re.inter (str.to.re "")
+                                                          (re.++ (re.complement (re.union (re.range "a"
+                                                                                                    "z")
+                                                                                          (re.range "A"
+                                                                                                    "Z")
+                                                                                          (re.range "0"
+                                                                                                    "9")
+                                                                                          (str.to.re "_")))
+                                                                 (re.* (re.range "\x00"
+                                                                                 "\xff"))))
+                                                (str.to.re "")))))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (=> (str.in.re TestC0
+               (re.inter (re.++ (str.to.re "")
+                                (str.to.re "Giggles")
+                                (str.to.re ""))
+                         (re.union (re.++ (re.union (re.inter (str.to.re "")
+                                                              (re.++ (re.* (re.range "\x00"
+                                                                                     "\xff"))
+                                                                     (re.complement (re.union (re.range "a"
+                                                                                                        "z")
+                                                                                              (re.range "A"
+                                                                                                        "Z")
+                                                                                              (re.range "0"
+                                                                                                        "9")
+                                                                                              (str.to.re "_")))))
+                                                    (str.to.re ""))
+                                          (re.inter (str.to.re "Giggles")
+                                                    (re.++ (re.union (re.range "a"
+                                                                               "z")
+                                                                     (re.range "A"
+                                                                               "Z")
+                                                                     (re.range "0"
+                                                                               "9")
+                                                                     (str.to.re "_"))
+                                                           (re.* (re.range "\x00"
+                                                                           "\xff")))))
+                                   (re.++ (re.inter (str.to.re "")
+                                                    (re.++ (re.* (re.range "\x00"
+                                                                           "\xff"))
+                                                           (re.union (re.range "a"
+                                                                               "z")
+                                                                     (re.range "A"
+                                                                               "Z")
+                                                                     (re.range "0"
+                                                                               "9")
+                                                                     (str.to.re "_"))))
+                                          (re.union (re.inter (str.to.re "Giggles")
+                                                              (re.++ (re.complement (re.union (re.range "a"
+                                                                                                        "z")
+                                                                                              (re.range "A"
+                                                                                                        "Z")
+                                                                                              (re.range "0"
+                                                                                                        "9")
+                                                                                              (str.to.re "_")))
+                                                                     (re.* (re.range "\x00"
+                                                                                     "\xff"))))
+                                                    (str.to.re ""))))
+                         (re.union (re.++ (re.union (re.inter (str.to.re "Giggles")
+                                                              (re.++ (re.* (re.range "\x00"
+                                                                                     "\xff"))
+                                                                     (re.complement (re.union (re.range "a"
+                                                                                                        "z")
+                                                                                              (re.range "A"
+                                                                                                        "Z")
+                                                                                              (re.range "0"
+                                                                                                        "9")
+                                                                                              (str.to.re "_")))))
+                                                    (str.to.re ""))
+                                          (re.inter (str.to.re "")
+                                                    (re.++ (re.union (re.range "a"
+                                                                               "z")
+                                                                     (re.range "A"
+                                                                               "Z")
+                                                                     (re.range "0"
+                                                                               "9")
+                                                                     (str.to.re "_"))
+                                                           (re.* (re.range "\x00"
+                                                                           "\xff")))))
+                                   (re.++ (re.inter (str.to.re "Giggles")
+                                                    (re.++ (re.* (re.range "\x00"
+                                                                           "\xff"))
+                                                           (re.union (re.range "a"
+                                                                               "z")
+                                                                     (re.range "A"
+                                                                               "Z")
+                                                                     (re.range "0"
+                                                                               "9")
+                                                                     (str.to.re "_"))))
+                                          (re.union (re.inter (str.to.re "")
+                                                              (re.++ (re.complement (re.union (re.range "a"
+                                                                                                        "z")
+                                                                                              (re.range "A"
+                                                                                                        "Z")
+                                                                                              (re.range "0"
+                                                                                                        "9")
+                                                                                              (str.to.re "_")))
+                                                                     (re.* (re.range "\x00"
+                                                                                     "\xff"))))
+                                                    (str.to.re ""))))))
+    (= TestC0 (str.++ "" "" |28 Fill 1| |28 Fill 2| |28 Fill 3|))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |28 Fill 1| (str.to.re "")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |28 Fill 2| (str.to.re "Giggles")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |28 Fill 3| (str.to.re "")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re (str.++ "" "" |28 Fill 1| |28 Fill 2| |28 Fill 3|)
+           (re.++ (str.to.re "") (str.to.re "Giggles") (str.to.re ""))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (= |28 Fill 4| (str.++ "" "" |28 Fill 1| |28 Fill 2| |28 Fill 3|)))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(push 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(check-sat)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(pop 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+Failed /^\bGiggles\b$/ because UNSAT
+Testing /^((?!chrome|android).)*safari/i
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(reset)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |33 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |33 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |33 Fill 3| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |33 Fill 4| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |33 Fill 5| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |34 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |35 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |35 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |35 Fill 3| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |35 Fill 4| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |36 Fill 1| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |36 Fill 2| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |36 Fill 3| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |36 Fill 4| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |33 Fill 6| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun |33 Fill 7| () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(declare-fun TestC0 () String)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re TestC0
+           (re.inter (re.++ (re.* (re.union (re.range "\x00" "\x09")
+                                            (re.range "\v" "\xff")))
+                            (str.to.re "safari")
+                            (re.* (re.range "\x00" "\xff")))
+                     (re.++ (str.to.re "")
+                            (re.inter (re.++ (re.* (re.union (re.range "\x00"
+                                                                       "\x09")
+                                                             (re.range "\v"
+                                                                       "\xff")))
+                                             (str.to.re "safari")
+                                             (re.* (re.range "\x00" "\xff")))
+                                      (re.complement (re.++ (re.union (str.to.re "chrome")
+                                                                      (str.to.re "android"))
+                                                            (re.* (re.range "\x00"
+                                                                            "\xff")))))))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (=> (str.in.re TestC0
+               (re.inter (re.++ (re.* (re.union (re.range "\x00" "\x09")
+                                                (re.range "\v" "\xff")))
+                                (str.to.re "safari")
+                                (re.* (re.range "\x00" "\xff")))
+                         (re.++ (str.to.re "")
+                                (re.inter (re.++ (re.* (re.union (re.range "\x00"
+                                                                           "\x09")
+                                                                 (re.range "\v"
+                                                                           "\xff")))
+                                                 (str.to.re "safari")
+                                                 (re.* (re.range "\x00" "\xff")))
+                                          (re.complement (re.++ (re.union (str.to.re "chrome")
+                                                                          (str.to.re "android"))
+                                                                (re.* (re.range "\x00"
+                                                                                "\xff"))))))))
+    (= TestC0 (str.++ "" "" |33 Fill 3| |33 Fill 2| |33 Fill 4| |33 Fill 5|))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |33 Fill 1|
+           (re.union (re.range "\x00" "\x09") (re.range "\v" "\xff"))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re (str.++ "" "" |33 Fill 1|)
+           (re.union (re.range "\x00" "\x09") (re.range "\v" "\xff"))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (or (= |33 Fill 2| (str.++ "" "" |33 Fill 1|)) (= |33 Fill 2| "")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (=> (= |33 Fill 2| "") (= (str.++ |33 Fill 3| |33 Fill 2|) "")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re |33 Fill 4| (str.to.re "safari")))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (str.in.re (str.++ "" "" |33 Fill 3| |33 Fill 2| |33 Fill 4|)
+           (re.++ (re.* (re.union (re.range "\x00" "\x09")
+                                  (re.range "\v" "\xff")))
+                  (str.to.re "safari"))))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (= |33 Fill 6| (str.++ "" "" |33 Fill 3| |33 Fill 2| |33 Fill 4|)))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(assert (= |33 Fill 7| |33 Fill 2|))
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(push 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(check-sat)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+
+
+ Writing to ostrich
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(pop 1)
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ostrich.stdin overflow, nothing was written
+Failed /^((?!chrome|android).)*safari/i because UNSAT

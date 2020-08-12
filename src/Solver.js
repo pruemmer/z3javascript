@@ -51,6 +51,7 @@ class Solver {
 	}
 
 	check() {
+		this.context.store(this.toString());
 		return Z3.Z3_solver_check(this.context.ctx, this.slv) === Z3.TRUE;
 	}
 
@@ -74,7 +75,7 @@ class Solver {
 	}
 
 	toString() {
-		return "Solver {\n" + Z3.Z3_solver_to_string(this.context.ctx, this.slv) + "}";
+		return "Solver {\n" + Z3.Z3_solver_to_string(this.context.ctx, this.slv) + "\n(check-sat)\n}";
 	}
 }
 

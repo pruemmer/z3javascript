@@ -6,7 +6,9 @@
 import Z3 from '../Z3';
 
 const ctx = new Z3.Context();
-const solver = new Z3.Solver(ctx, false, []);
+const solver = new Z3.Solver(ctx, false, [
+    {name: "smt.string_solver", value: "seq"},
+]);
 
 function Test(Origin) {
 	solver.reset();

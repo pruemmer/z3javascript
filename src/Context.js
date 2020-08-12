@@ -15,8 +15,16 @@ class Context {
 
 		this.ctx = Z3.Z3_mk_context_rc(config);
 		Z3.Z3_del_config(config);
+
+		this.fs = require("fs");
+		this.count = 1;
+        
 	}
 
+	store(str) {
+		this.fs.appendFileSync("check_sat_output.smt2", str);
+	}
+    
 	_nullExpr() {
 		return new Expr(this, null);
 	}
