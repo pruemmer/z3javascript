@@ -36,7 +36,7 @@ class Context {
 		this.namedPipeString = "whatever.txt";
 		this.namedPipe = this.fs.openSync(this.namedPipeString, "w+");
 
-		this.ostrich = spawn("/home/henrik/UU/bachelor/ostrich/ostrich", ["+stdin", "+incremental"], {
+		this.ostrich = spawn("ostrich", ["+stdin", "+incremental"], {
 	        stdio: [
 		        "pipe",
 		        this.namedPipe,

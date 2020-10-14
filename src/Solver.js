@@ -5,7 +5,7 @@
 import Z3 from "./Z3Loader";
 import Model from "./Model";
 
-const useZ3 = true;
+const useZ3 = false;
 
 const childProcess = require("child_process");
 
