@@ -81,8 +81,8 @@ class Solver {
 		var res = childProcess.spawnSync("./piper2");
 		var str = res.stdout.toString();
 		console.log(str);
-		this.context.fs.closeSync(this.context.fs.openSync(this.context.namedPipeString, "w"));
-		return str == "sat";
+//		this.context.fs.closeSync(this.context.fs.openSync(this.context.namedPipeString, "w"));
+		return str == "sat\n";
 	}
 
 	check() {
@@ -112,7 +112,7 @@ class Solver {
 		} else {
 			if (this.check()) {
 				console.log("What.");
-				this.context.writeToOstrich("(get-model)");
+//				this.context.writeToOstrich("(get-model)");
 				//this.ostrichAnswer();
 			}
 		}

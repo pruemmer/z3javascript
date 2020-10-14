@@ -6,11 +6,7 @@
 import Z3 from '../Z3';
 
 const ctx = new Z3.Context();
-const solver = new Z3.Solver(ctx, true, [
-	{ name: "smt.string_solver", value: "z3str3" }, 
-	{ name: "random_seed", value: Math.floor(Math.random() * Math.pow(2, 32))},
-	{ name: "phase_selection", value: 5 }
-]);
+const solver = new Z3.Solver(ctx, false, []);
 
 function Test(Origin) {
 	solver.reset();
